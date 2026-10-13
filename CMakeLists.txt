@@ -21,7 +21,9 @@ add_executable(camera_grab main.cpp
         PoseEstimator.cpp
         PoseEstimator.h
         InteractionMapping.h
-        InteractionMapping.cpp)
+        InteractionMapping.cpp
+        LampRenderer.cpp
+        LampRenderer.h)
 # Give the program access to OpenCV headers and libraries.
 target_include_directories(camera_grab PRIVATE ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(camera_grab PRIVATE ${OpenCV_LIBS})
