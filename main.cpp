@@ -7,6 +7,8 @@
 #include "IsValidQuad.h"
 #include "MarkerRecognizer.h"
 #include "PoseEstimator.h"
+#include "InteractionMapping.h"
+#include "LampRenderer.h"
 
 int main() {
     CameraInput camera;
@@ -21,6 +23,8 @@ int main() {
     IsValidQuad validator;
     MarkerRecognizer recognizer;
     PoseEstimator poseEstimator;
+    InteractionMapping interactionMapping;
+    LampRenderer lampRenderer;
 
     cv::Mat frame, binary;
     // Read and display one frame at a time.
@@ -120,6 +124,16 @@ int main() {
                                    std::to_string(static_cast<int>(pose.tvec[2])) + " mm";
             cv::putText(frame, poseText, cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 0.7, cv::Scalar(0, 0, 255), 2);
         }
+
+        // Stage 10: Convert marker angle to lamp brightness
+        LampState lamp = interactionMapping.update(
+            marker.found,
+            pose.angle
+        );
+
+        // Stage 11: Display virtual lamp
+        cv::Mat lampImage = lampRenderer.render(lamp);
+        cv::imshow("Lamp", lampImage);
 
         cv::imshow("Detected Contour", displayImage);
         cv::imshow("Detected Quadrilateral", frame);
