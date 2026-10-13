@@ -16,7 +16,7 @@ public:
 private:
     cv::Mat cameraMatrix(const cv::Size& frameSize) const;
 
-    static constexpr float markerLength = 85.0f; // printed marker side in mm (outer edge of black border)
+    static constexpr float markerLength = 100.0f; // printed marker side in mm (outer edge of black border)
 
     const std::vector<cv::Point3f> objectPoints = {
         {-markerLength / 2,  markerLength / 2, 0},
