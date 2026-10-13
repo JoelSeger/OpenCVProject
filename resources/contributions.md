@@ -14,6 +14,6 @@ Files: CountorDetection.cpp, CountorDetection.h, LineEstimation.cpp, LineEstimat
 Responsible for finding countors from the binarized picture, then finding four corners in each countor and drawing lines between them. With the lines in mind we do some math and determine if the object is a valid quadliteral.
 
 Thor Anderberg Nilsson
-Component: Marker Normalisation and Recognition
-Files: MarkerRecognizer.h, MarkerRecognizer.cpp
-Responsible for taking the quads passed to me by Joel's component and warping them into flat images. Once there's a flat image of the quad, my component translates it into a bit-matrix in order to determine whether our specific marker is found in the quad, and if so, which way it is rotated. Screenshot: https://i.imgur.com/qkNIWOj.png
+Component: Marker Normalisation and Recognition, Pose Estimation
+Files: MarkerRecognizer.h, MarkerRecognizer.cpp, PoseEstimator.h, PoseEstimator.cpp
+Responsible for taking the quads passed to me by Joel's component and warping them into flat images. Once there's a flat image of the quad, my component translates it into a bit-matrix in order to determine whether our specific marker is found in the quad, and if so, which way it is rotated. Screenshot: https://i.imgur.com/qkNIWOj.png. Pose Estimation then uses the marker's corners and its real size (measured on the printed paper) to find where the marker is in 3D relative to the camera and draws its axes. It outputs the marker's rotation angle on screen which in turn will be used to control a lightbulb on the screen.

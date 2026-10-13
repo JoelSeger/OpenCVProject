@@ -6,6 +6,7 @@
 #include "LineEstimation.h"
 #include "IsValidQuad.h"
 #include "MarkerRecognizer.h"
+#include "PoseEstimator.h"
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
     LineEstimation liner;
     IsValidQuad validator;
     MarkerRecognizer recognizer;
+    PoseEstimator poseEstimator;
 
     cv::Mat frame, binary;
     // Read and display one frame at a time.
@@ -106,6 +108,15 @@ int main()
         if (marker.found) {
             cv::circle(frame, marker.corners[0], 10, cv::Scalar(0, 0, 255), 2);
             cv::putText(frame, "MARKER top left", marker.corners[0] + cv::Point2f(12, 20), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 0, 255), 2);
+        }
+
+        // Stage 9: marker pose and angle text
+        PoseResult pose;
+        if (marker.found) {
+            pose = poseEstimator.estimatePose(marker.corners, frame.size());
+            poseEstimator.drawAxes(frame, pose);
+            std::string poseText = "angle " + std::to_string(static_cast<int>(pose.angle)) + " deg, distance " + std::to_string(static_cast<int>(pose.tvec[2])) + " mm";
+            cv::putText(frame, poseText, cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 0.7, cv::Scalar(0, 0, 255), 2);
         }
 
         cv::imshow("Detected Contour", displayImage);
