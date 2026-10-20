@@ -2,48 +2,26 @@
 // Stage 5 and 6
 
 #include "LineEstimation.h"
+#include <algorithm>
 
 LineEstimation::LineEstimation() {}
 
 std::vector<cv::Point> LineEstimation::findCorners(const std::vector<cv::Point>& contour) {
+    if (contour.size() < 4) return {};
+
+    // Approximate the boundary itself; diagonal extrema can select the same corner.
     std::vector<cv::Point> corners;
+    cv::approxPolyDP(contour, corners, 0.02 * cv::arcLength(contour, true), true);
+    if (corners.size() != 4) return {};
 
-    // Where x+y is at it's minimum
-    cv::Point topLeft(contour[0]);
-
-    // Where x+y is at it's maximum
-    cv::Point bottomRight(contour[0]);
-
-    // Where x-y is at it's minimum
-    cv::Point topRight(contour[0]);
-    
-    // Where x-y is at it's maximum
-    cv::Point bottomLeft(contour[0]);
-
-    for (const auto& pt : contour) {
-        // 1. Top-Left: min (x + y)
-        if (pt.x + pt.y < topLeft.x + topLeft.y) {
-            topLeft = pt;
-        }
-        // 2. Bottom-Right: max (x + y)
-        if (pt.x + pt.y > bottomRight.x + bottomRight.y) {
-            bottomRight = pt;
-        }
-        // 3. Top-Right: max (x - y)
-        if ((pt.x - pt.y) > (topRight.x - topRight.y)) {
-            topRight = pt;
-        }
-        // 4. Bottom-Left: min (x - y)
-        if ((pt.x - pt.y) < (bottomLeft.x - bottomLeft.y)) {
-            bottomLeft = pt;
-        }
-    }
-    
-    // Ordered clockwise for easy access
-    corners.push_back(topLeft);
-    corners.push_back(topRight);
-    corners.push_back(bottomRight);
-    corners.push_back(bottomLeft);
+    // Clockwise in image coordinates, starting nearest the image top-left.
+    if (cv::contourArea(corners, true) < 0)
+        std::reverse(corners.begin(), corners.end());
+    auto first = std::min_element(corners.begin(), corners.end(),
+        [](const cv::Point& a, const cv::Point& b) {
+            return a.x + a.y < b.x + b.y;
+        });
+    std::rotate(corners.begin(), first, corners.end());
 
     return corners;
 }
