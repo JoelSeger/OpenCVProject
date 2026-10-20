@@ -27,13 +27,24 @@ int main() {
     LampRenderer lampRenderer;
 
     cv::Mat frame, binary;
+    bool debugNextFrame = false;
     // Read and display one frame at a time.
     while (camera.getFrame(frame)) {
         cv::imshow("OpenCV video test", frame);
 
+        //debug line
+        bool debug = debugNextFrame;
+        debugNextFrame = false;
+
         // Stage 2 + Stage 3
         std::vector<Region> regions = analyzer.analyze(frame, binary, 200);
         cv::imshow("Binarised", binary);
+
+        //debug output if its within 2, 3
+        if (debug) {
+            std::cout << "\n--- DEBUG FRAME ---\n";
+            std::cout << "Regions detected: " << regions.size() << "\n";
+        }
 
         cv::Mat regionsView = frame.clone();
         for (const auto &region: regions) {
@@ -53,6 +64,13 @@ int main() {
             double area = cv::contourArea(contour);
             double totalImageArea = static_cast<double>(binary.cols * binary.rows);
 
+            // debug output if its within stage 4, 5, 6
+            if (debug) {
+                std::cout << "Region: " << reg.boundingBox
+                          << " | Contour points: " << contour.size()
+                          << " | Area: " << area << "\n";
+            }
+
             if (area < 200.0 || area > (totalImageArea * 0.75)) {
                 continue;
             }
@@ -64,6 +82,25 @@ int main() {
             }
 
             QuadResult quad = validator.processAndValidate(contour, liner);
+
+            // debug output if the problem is within 4, 5, 6
+            if (debug) {
+                std::cout << "Quad valid: " << std::boolalpha << quad.isValid << "\n";
+
+                for (size_t i = 0; i < quad.corners.size(); i++) {
+                    std::cout << "  Corner " << i << ": "
+                              << quad.corners[i] << "\n";
+                }
+
+                for (size_t i = 0; i < quad.corners.size(); i++) {
+                    for (size_t j = i + 1; j < quad.corners.size(); j++) {
+                        if (quad.corners[i] == quad.corners[j]) {
+                            std::cout << "  WARNING: Duplicate corners "
+                                      << i << " and " << j << "\n";
+                        }
+                    }
+                }
+            }
 
             if (quad.isValid) {
                 validQuads.push_back(quad);
@@ -82,6 +119,15 @@ int main() {
                 marker = recognizer.recognizeMarker(warped, quad.corners);
             }
         }
+
+        //debug output
+        if (debug) {
+            std::cout << "Valid quadrilaterals: " << validQuads.size() << "\n";
+            std::cout << "Marker recognized: "
+                      << std::boolalpha << marker.found << "\n";
+            std::cout << "END DEBUG\n";
+        }
+
         cv::Mat strip = cv::Mat::zeros(60, 60, CV_8UC1); // black square when there are no quads detected
         if (!warps.empty()) {
             cv::hconcat(warps, strip); // all warps side by side
@@ -137,6 +183,11 @@ int main() {
 
         cv::imshow("Detected Contour", displayImage);
         cv::imshow("Detected Quadrilateral", frame);
+
+        // debug line for taking a single frame when 'd' is pressed
+        if (cv::waitKey(20) == 'd') {
+            debugNextFrame = true;
+        }
 
         // esc closes program.
         if (cv::waitKey(20) == 27) {
