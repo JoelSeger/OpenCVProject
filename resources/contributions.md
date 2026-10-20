@@ -7,6 +7,9 @@ Converting marker angle into usable brightness value between 0-100%. Renders a
 virtual lamp that is controlled by this value and also turns on and off by the 
 marker detectiong existence.
 
+Investigated and improved Countour extraction and corner estimation components,
+with Joel's previous agreement
+
 Love Skön
 Component: Binarization and Connected-region Labeling
 Files: RegionAnalyzer.cpp, RegionAnalyzer.h, test_region_analyzer.cpp
