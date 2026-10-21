@@ -84,16 +84,18 @@ bool IsValidQuad::isReliableQuadrilateral(const std::vector<cv::Point>& corners,
         return false;
     }
 
-    // check length on sides to calc aspect ratio
-    double side1Len = cv::norm(corners[0] - corners[1]);
-    double side2Len = cv::norm(corners[1] - corners[2]);
+    // check aspect ratio of every pair of neighbouring sides
+    for (size_t i = 0; i < 4; ++i) {
+        double side1Len = cv::norm(corners[i] - corners[(i + 1) % 4]);
+        double side2Len = cv::norm(corners[(i + 1) % 4] - corners[(i + 2) % 4]);
 
-    if (side1Len == 0 || side2Len == 0) return false;
+        if (side1Len == 0 || side2Len == 0) return false;
 
-    double aspectRatio = side1Len / side2Len;
+        double aspectRatio = side1Len / side2Len;
 
-    if (aspectRatio < 0.7 || aspectRatio > 1.4) {
-        return false;
+        if (aspectRatio < 0.7 || aspectRatio > 1.4) {
+            return false;
+        }
     }
     
     return true;
