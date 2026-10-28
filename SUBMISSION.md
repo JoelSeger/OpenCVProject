@@ -22,4 +22,4 @@ Known limitations:
 - Any tiny interruption could dirupt the lamp.
 - Allowable distorsion is low, tilt the marker too much and the detection will cease.
 
-Presentation date and time: 
+Presentation date and time: 2026-11-06 09:00
