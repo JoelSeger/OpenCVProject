@@ -9,7 +9,15 @@
 CameraInput::CameraInput() = default;
 
 bool CameraInput::openCamera(int cameraIndex) {
-    return capture.open(4);
+    capture.release();
+    live = true;
+    sourceName = "camera " + std::to_string(cameraIndex);
+    if (!capture.open(cameraIndex)) {
+        lastErrorMessage = "could not open " + sourceName;
+        return false;
+    }
+    lastErrorMessage.clear();
+    return true;
 }
 
 bool CameraInput::openVideo(const std::string &videoPath) {

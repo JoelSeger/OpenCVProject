@@ -1,3 +1,18 @@
+## Individual assignments
+
+| Individual assignment | Student | Component or task | Files | PR/commit | How tested |
+|---|---|---|---|---|---|
+| Assignment 1 | Kevin Taverner | CameraInput implementation and validation | CameraInput.h/.cpp | PR #2 | Camera, frame validation test and debug output |
+| Assignment 1 | Love Skön | RegionAnalyzer implementation | RegionAnalyzer.h/.cpp | PR #3 | Region and invalid-input unit tests |
+| Assignment 1 | Joel Seger | Contour detection, Line Estimation and Valid Quadliteral | ContourDetection.h/.cpp, LineEstimation.h/.cpp, IsValidQuad.h/.cpp | PR #4 | Camera, debug console messages |
+| Assignment 1 | Thor Anderberg Nilsson | MarkerRecognizer | MarkerRecognizer.h/.cpp | PR #5 | Camera |
+| Assignment 2 | Kevin Taverner | Contour and Corner bug fix | main.cpp, LineEstimation.cpp, ContourDetection.cpp, IsValidQuad.cpp, contributions.md | PR #9 | Debug checkpoints and camera image test |
+| Assignment 2 | Thor Anderberg Nilsson | IsValidQuad | IsValidQuad.cpp | PR #10 | Camera and debug code-snippet |
+| Assignment 2 | Joel Seger | Noise check and pose angle | PoseEstimator.cpp, MarkerRecognizer.cpp | PR #11 | Camera, debug console messages, tests |
+| Assignment 2 | Love Skön | InteractionMapping 360 degree dimming | InteractionMapping.h/.cpp | PR #12 | Angle sweep and wrap unit tests |
+| Assignment 2 | Love Skön | CameraInput dropped-frame handling | CameraInput.h/.cpp | PR #14 | End-of-stream and dropped-frame unit tests |
+
+
 Kevin Taverner
 Component: Camera Input and Validation, Usable Marker Values and Virtual Lamp
 Files: CameraInput.h, CameraInput.cpp, main.cpp, InteractionMapping.h 

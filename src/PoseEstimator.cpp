@@ -2,6 +2,12 @@
 // https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html
 
 #include "PoseEstimator.h"
+
+// OpenCV 5 moved contourArea/approxPolyDP/getPerspectiveTransform/solvePnP into
+// the geometry module, which <opencv2/opencv.hpp> no longer includes.
+#if CV_VERSION_MAJOR >= 5
+#include <opencv2/geometry.hpp>
+#endif
 #include <cmath>
 
 PoseResult PoseEstimator::estimatePose(const std::vector<cv::Point2f>& corners, const cv::Size& frameSize) const {

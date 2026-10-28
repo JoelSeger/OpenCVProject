@@ -1,0 +1,13 @@
+Test project /home/love/C++/OpenCVProject/build
+    Start 1: region_analyzer
+1/4 Test #1: region_analyzer ..................   Passed    0.25 sec
+    Start 2: marker_recognizer
+2/4 Test #2: marker_recognizer ................   Passed    1.26 sec
+    Start 3: camera_input
+3/4 Test #3: camera_input .....................   Passed    0.32 sec
+    Start 4: interaction_mapping
+4/4 Test #4: interaction_mapping ..............   Passed    0.24 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =   2.08 sec

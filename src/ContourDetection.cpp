@@ -3,6 +3,12 @@
 
 #include "ContourDetection.h"
 
+// OpenCV 5 moved contourArea/approxPolyDP/getPerspectiveTransform/solvePnP into
+// the geometry module, which <opencv2/opencv.hpp> no longer includes.
+#if CV_VERSION_MAJOR >= 5
+#include <opencv2/geometry.hpp>
+#endif
+
 ContourDetection::ContourDetection() {}
 
 std::vector<cv::Point> ContourDetection::extractContour(const cv::Mat& binary, const cv::Rect& rect) {
