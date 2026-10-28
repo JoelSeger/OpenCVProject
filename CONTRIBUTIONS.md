@@ -40,6 +40,8 @@ Component: Contour Detection, Line Estimation, Quadliteral Validation
 Files: CountorDetection.cpp, CountorDetection.h, LineEstimation.cpp, LineEstimation.h, IsValidQuad.cpp, IsValidQuad.h
 Responsible for finding countors from the binarized picture, then finding four corners in each countor and drawing lines between them. With the lines in mind we do some math and determine if the object is a valid quadliteral.
 
+For individual assignment 2: Made marker recognizer less suseptible to noise by making the function that calculates the corners account for more than one pixel. Instead it does a majority "vote" on an area. Also made the some adjustments to pose angle file to make the marker more accurate while tilted.
+
 Thor Anderberg Nilsson
 Component: Marker Normalisation and Recognition, Pose Estimation
 Files: MarkerRecognizer.h, MarkerRecognizer.cpp, PoseEstimator.h, PoseEstimator.cpp
