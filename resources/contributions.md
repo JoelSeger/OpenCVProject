@@ -2,13 +2,12 @@ Kevin Taverner
 Component: Camera Input and Validation, Usable Marker Values and Virtual Lamp
 Files: CameraInput.h, CameraInput.cpp, main.cpp, InteractionMapping.h 
 InteractionMapping.cpp, LampRenderer.h, LampRenderer.cpp
-Responsible for camera/video source opening, frame capture and validation.
-Converting marker angle into usable brightness value between 0-100%. Renders a 
-virtual lamp that is controlled by this value and also turns on and off by the 
-marker detectiong existence.
+Assignment 1: Responsible for camera/video source opening, frame capture and validation.
 
-Investigated and improved Countour extraction and corner estimation components,
-with Joel's previous agreement
+Assignment 2: Converting marker angle into usable brightness value between 0-100%. Renders a 
+virtual lamp that is controlled by this value and also turns on and off by the 
+marker detecting existence. Investigated and improved Contour extraction and corner estimation components,
+with Joel's previous agreement.
 
 Love Skön
 Component: Binarization and Connected-region Labeling
