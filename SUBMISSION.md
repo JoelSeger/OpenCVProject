@@ -16,10 +16,10 @@ Required equipment or software: a webcam, the marker from resources/4x4_1000-0.s
 
 Known limitations:
 - No camera calibration. The focal length is approximated from the frame width, so the distance readout is approximate.
-- Only ArUco DICT_4X4_1000 id 0 is recognised, and only the first recognised marker in a frame controls the lamp.
+- Only ArUco DICT_4X4_1000 id 0 is recognized, and only the first recognised marker in a frame controls the lamp.
 - Detection relies on a dark marker on a light background with reasonably even lighting.
 - When the pose axes leave the frame OpenCV prints a drawFrameAxes warning per frame; the program keeps running.
-- Any tiny interruption could dirupt the lamp.
-- Allowable distorsion is low, tilt the marker too much and the detection will cease.
+- Any tiny interruption could disrupt the lamp.
+- Allowable distortion is low, tilt the marker too much and the detection will cease.
 
 Presentation date and time: 2026-11-06 09:00

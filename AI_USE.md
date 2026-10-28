@@ -2,7 +2,7 @@
 
 ## Joel Seger
 
-AI has been used to better understand the math behind some of the functions. Since there's some pretty complicated math that is way beyond my knowladge or anything I have done here at university I used AI to help me put the math in the right place. AI has primarily been used to undestand the complex math that is coupled with all the code since I'm not well versed in it. It has also been used to explain exisitng code since I was not the one writing it. This gave me a good understanding for finding potential problems and debugg.
+Claude AI has been used to better understand the math behind some of the functions. Since there's some pretty complicated math that is way beyond my knowladge or anything I have done here at university I used AI to help me put the math in the right place. AI has primarily been used to undestand the complex math that is coupled with all the code since I'm not well versed in it. It has also been used to explain exisitng code since I was not the one writing it. This gave me a good understanding for finding potential problems and debugg.
 
 ## Love Skön
 
@@ -18,4 +18,4 @@ I used AI to scan the repository for potential weaknesses. I also used AI to mak
 
 ## Kevin Taverner
 
-AI was used as support for understanding the assignment and its deliverables, git and pull-request workflow, reviewing the component current structure, teachings in differences between other programming languages and c++, as well as functions that c++ uniquely uses. Suggesting improvement ways and c++ formatting. Used to improve the wording and grammar of documentation and submission. I reviewed and understood the submitted code, and can explain and modify it. AI helped suggest unique functions with openCV framework.
+Codex agent through built-in AI Assistant was used as support for understanding the assignment and its deliverables, git and pull-request workflow, reviewing the component current structure, teachings in differences between other programming languages and c++, as well as functions that c++ uniquely have. Suggesting improvement ways and c++ formatting. Used to improve the wording and grammar of documentation and submission. I reviewed, verified and understood the submitted code both written by codex and me, and can explain and modify it. AI helped suggest unique functions with openCV framework.
