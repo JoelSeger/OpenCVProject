@@ -15,11 +15,11 @@ Component: Binarization and Connected-region Labeling
 Files: RegionAnalyzer.cpp, RegionAnalyzer.h, test_region_analyzer.cpp
 Responsible for turning frames into binary images and extracting filtered candidate regions for marker detection.
 
-For individual assignment 2, I also investigated the CameraInput, with Kevin's agreement. getFrame returned false both at end of a video and
-when a camera dropped a single frame, and main's loop ended the program on the first
-false, so one dropped frame silently exited with status 0. Added readFrame with a
-FrameStatus result, retries for live sources, lastError/describeSource diagnostics,
-tests/test_camera_input.cpp, and a camera-index-or-video-path argument to main.
+For individual assignment 2, I investigated the boundary between PoseEstimator and
+InteractionMapping (Kevin's component), with Kevin's agreement. PoseEstimator emits an
+angle in -180..180 but InteractionMapping only mapped -90..90 and clamped the rest, so
+half the rotation range was dead and the lamp jumped from 100% to 0% at the 180 degree
+wrap. Added tests/test_interaction_mapping.cpp to show this and reworked the mapping.
 
 Joel Seger
 Component: Contour Detection, Line Estimation, Quadliteral Validation

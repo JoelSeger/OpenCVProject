@@ -208,15 +208,9 @@ int main(int argc, char **argv) {
         cv::imshow("Detected Contour", displayImage);
         cv::imshow("Detected Quadrilateral", frame);
 
-        // debug line for taking a single frame when 'd' is pressed
-        if (cv::waitKey(20) == 'd') {
-            debugNextFrame = true;
-        }
-
-        // esc closes program.
-        if (cv::waitKey(20) == 27) {
-            break;
-        }
+        int key = cv::waitKey(20);
+        if (key == 'd') debugNextFrame = true;
+        if (key == 27) break;
     }
     return 0;
 }
